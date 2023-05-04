@@ -84,6 +84,7 @@ $configs = $dbSession->getAllConfigs();
 				xhr.send(form_data);
 				
 				alert("Changes applied");
+				location.reload();
 			}
 			
 		</script>

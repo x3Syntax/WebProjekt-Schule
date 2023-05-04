@@ -69,7 +69,7 @@
 		
 		public function getAllAccs()
 		{
-			$sql = "SELECT account.aID, account.login_ID, account.login_PW, users.vorname FROM account, users WHERE account.user = users.uID";
+			$sql = "SELECT account.aID, account.login_ID, account.login_PW, users.vorname FROM account, users WHERE account.aID = users.uID";
 			
 			$getConfigs = $this->pdo->prepare($sql);
 			$getConfigs->execute();
@@ -97,11 +97,34 @@
 		public function removeAcc($acc)
 		{
 			//SQL statement
-			$sql = "DELETE FROM account WHERE aID = ".$this->pdo->quote($acc).";";
+			$sql = "DELETE FROM account WHERE aID = ".$this->pdo->quote($acc).";
+					DELETE FROM users WHERE oID = ".$this->pdo->quote($acc)."
+					";
 			
-			$getConfigs = $this->pdo->prepare($sql);
-			$getConfigs->execute();
-			$orderInfo = $getConfigs->fetchAll();
+			$getSql = $this->pdo->prepare($sql);
+			$getSql->execute();
+			$getSql->fetchAll();
+		}
+		
+		public function addAcc($accs)
+		{
+			
+			foreach ($accs as $acc) 
+			{
+				$sql = "INSERT INTO account (login_ID, login_PW) VALUES (
+					".$this->pdo->quote($acc['login_ID']).",
+					".$this->pdo->quote($acc['login_PW'])."); 
+					
+					INSERT INTO users (name, vorname) VALUES (
+					".$this->pdo->quote($acc['name2']).",
+					".$this->pdo->quote($acc['name'])."); 
+					
+					" ;
+			}
+			
+			$getSql = $this->pdo->prepare($sql);
+			$getSql->execute();
+			$getSql->fetchAll();
 		}
 		
 		public function clearSession()
