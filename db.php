@@ -42,7 +42,7 @@
 		
 		public function getAllConfigs()
 		{
-			$sql = "SELECT * FROM computers WHERE 1 = 1";
+			$sql = "SELECT * FROM devices WHERE 1 = 1";
 			
 			$getConfigs = $this->pdo->prepare($sql);
 			$getConfigs->execute();
@@ -54,7 +54,7 @@
 		public function insertChangesPC($configs)
 		{
 			//SQL statement
-			$updateConfigs = $this->pdo->prepare('UPDATE computers SET ip_address = ?, submask = ?, vlan = ?, gateway = ? WHERE pc_name = ?');
+			$updateConfigs = $this->pdo->prepare('UPDATE devices SET ip_address = ?, submask = ?, vlan = ?, gateway = ? WHERE pc_name = ?');
 			
 			//Iterieren durch das array um für jedes objekt das statement auszuführen
 			foreach ($configs as $config) 
@@ -125,6 +125,23 @@
 			$getSql = $this->pdo->prepare($sql);
 			$getSql->execute();
 			$getSql->fetchAll();
+		}
+		
+		public function exportCSV()
+		{
+			//Execute a SELECT statement to fetch the data
+			$sql = $this->pdo->query('SELECT * FROM devices');
+
+			// Open a file handle for writing the CSV file
+			$fp = fopen('exported.csv', 'w');
+
+			// Loop through the result set and write each row to the CSV file
+			while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+				fputcsv($fp, $row);
+			}
+
+			// Close the file handle and disconnect from the database
+			fclose($fp);
 		}
 		
 		public function clearSession()

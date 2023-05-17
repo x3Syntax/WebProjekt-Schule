@@ -151,36 +151,59 @@ $accs = $dbSession->getAllAccs();
 			
 		</script>
 	</head>
-	<body>
-		<div class="header">
-			<h1>Wilkommen</h1>
+	<body class="w3-light-grey">
+		<!-- Top container -->
+		<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+		  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button>
+		  <span class="w3-bar-item w3-right">Projekt</span>
 		</div>
+	
+		<!-- Sidebar/menu -->
+		<nav class="w3-sidebar w3-light-grey" style="z-index:3;width:300px;" id="mySidebar"><br>
+		  <div class="w3-container w3-row">
+			<div class="w3-col s8 w3-bar">
+			  <span>Willkommen</span><br>
+			</div>
+		  </div>
+		  <hr>
+		  <div class="w3-bar-block">
+			<a href="dashboard.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
+			<a href="users.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Benutzer verwalten</a>
+			<a href="config.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Netzgeräte verwalten</a>
+			<a href="import.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Import Geräte</a>
+			<a href="export.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Export Geräte</a>
+			<a href="logout.php" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-bullseye fa-fw"></i>  Logout</a>
+		  </div>
+		</nav>
 		
-		<div class="configMain">
-			<table>
+		
+		<div class="w3-main" style="margin-left:20%; margin-top: 3%;">
+			<table class="w3-table">
 				<tr>
 					<th>aID</th>
 					<th>Login ID</th>
+					<th></th>
 					<th>Login PW</th>
+					<th></th>
 					<th>Permission</th>
 				</tr>
 				<!-- foreach schleife um das array komplett zu Laden/anzeigen -->
 				<?php foreach($accs as $acc): ?>
 				<tr>
 					<td><?php echo $acc['aID']; ?><input type="hidden" name="aID" value="<?php echo $acc['aID']; ?>"></td>
-					<td><input type="text" id="login_ID_<?php echo $acc['aID']; ?>" value="<?php echo $acc['login_ID']; ?>" disabled></td>
-					<td><button onclick="editConfig('login_ID_<?php echo $acc['aID']; ?>')">Edit</button></td>				
-					<td><input type="password" id="login_PW_<?php echo $acc['aID']; ?>" value="<?php echo $acc['login_PW']; ?>" disabled></td>	
-					<td><button onclick="editConfig('login_PW_<?php echo $acc['aID']; ?>')">Edit</button></td>	
-					<td><input type="text" id="vorname_<?php echo $acc['aID']; ?>" value="<?php echo $acc['vorname']; ?>" disabled></td>
-					<td><button onclick="removeAcc('<?php echo $acc['aID']; ?>')">Remove</button></td>		
+					<td><input class="w3-input" type="text" id="login_ID_<?php echo $acc['aID']; ?>" value="<?php echo $acc['login_ID']; ?>" disabled></td>
+					<td><button class="w3-button w3-dark-grey" onclick="editConfig('login_ID_<?php echo $acc['aID']; ?>')"><img src="img/pencil.svg"></img></button></td>	
+					<td><input class="w3-input" type="password" id="login_PW_<?php echo $acc['aID']; ?>" value="<?php echo $acc['login_PW']; ?>" disabled></td>	
+					<td><button class="w3-button w3-dark-grey" onclick="editConfig('login_PW_<?php echo $acc['aID']; ?>')"><img src="img/pencil.svg"></img></button></td>	
+					<td><input class="w3-input" type="text" id="vorname_<?php echo $acc['aID']; ?>" value="<?php echo $acc['vorname']; ?>" disabled></td>
+					<td><button class="w3-button w3-red" onclick="removeAcc('<?php echo $acc['aID']; ?>')">X</button></td>		
 				</tr>
 				<?php endforeach; ?>
 			</table>
 			<!-- Button für den funktionsaufruf um die Änderungen zu speichern (db) -->
-			<button onclick="saveChanges()">Save Changes</button>
+			<button class="w3-button w3-dark-grey" onclick="saveChanges()" style="margin-left: 1.1%"><img src="img/save.png"></img></button>
 			
-			<table>
+			<table class="w3-table">
 				<tr>
 					<th>Login ID</th>
 					<th>Login PW</th>
@@ -188,22 +211,14 @@ $accs = $dbSession->getAllAccs();
 					<th>Nachname</th>
 				</tr>
 				<tr>
-					<td><input type="text" id="login_ID"></td>
-					<td><input type="password" id="login_PW"></td>
-					<td><input type="text" id="name"></td>
-					<td><input type="text" id="name2"></td>	
+					<td><input class="w3-input" type="text" id="login_ID"></td>
+					<td><input class="w3-input" type="password" id="login_PW"></td>
+					<td><input class="w3-input" type="text" id="name"></td>
+					<td><input class="w3-input" type="text" id="name2"></td>	
 				</tr>
 			</table>
-			
-			
 			<!-- Button für den funktionsaufruf um einen neuen User anzulegen -->
-			<button onclick="addUser()">Add User</button>
-		</div>
-	
-		<div class="nav">
-			<div class="logout-button">
-				<a href="logout.php" class="nav-link">Logout</a>
-			</div>
+			<button class="w3-button w3-dark-grey" onclick="addUser()" style="margin-left: 1.1%"><img src="img/add.png"></img></button>
 		</div>
 	</body>
 </html>
