@@ -54,3 +54,54 @@ function saveChanges()
 	alert("Changes applied");
 	location.reload();
 }
+
+//Entferne Acc
+function removeAcc(acc_name)
+{
+	let acc_remove = JSON.stringify(acc_name);
+	
+	// Erstellen eines neuen FormData-Objekt und hinzufügen des JSON-Strings als "acc_remove"
+	let form_data = new FormData();
+	form_data.append('acc_remove', acc_remove);
+	
+	this.postData(form_data);
+	//Seite refreshen
+	location.reload();
+}
+
+function postData(data)
+{
+	let xhr = new XMLHttpRequest();	
+	
+	///////////DEBUG
+	//xhr.onreadystatechange = function() {
+	//	if (xhr.readyState === 4 && xhr.status === 200) {
+	//		alert(xhr.responseText);
+	//	}
+	//};
+	///////////////////
+	xhr.open('POST', 'users.php');
+	xhr.send(data);
+	
+	alert("Changes applied");
+}
+
+function addUser()
+{
+	let accTmp = {};
+
+	accTmp[0] = {
+		'login_ID': document.getElementById('login_ID').value,
+		'login_PW': document.getElementById('login_PW').value,
+		'name': document.getElementById('name').value,
+		'name2': document.getElementById('name2').value
+	};
+	
+	let acc_add = JSON.stringify(accTmp);
+	let form_data = new FormData();
+	form_data.append('acc_add', acc_add);
+
+	this.postData(form_data);
+	
+	location.reload();
+}

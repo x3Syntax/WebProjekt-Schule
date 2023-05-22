@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices>
+  <device>
+    <pc_name>PC5</pc_name>
+    <ip_address>123.231.33.4</ip_address>
+    <submask>255.255.0.0</submask>
+    <vlan>1</vlan>
+    <gateway>131.255.0.0</gateway>
+  </device>
+  <device>
+    <pc_name>PC1</pc_name>
+    <ip_address>122.231.33.123</ip_address>
+    <submask>255.255.0.0</submask>
+    <vlan>1</vlan>
+    <gateway>131.255.0.0</gateway>
+  </device>
+  <device>
+    <pc_name>PC2</pc_name>
+    <ip_address>123.231.33.23</ip_address>
+    <submask>255.255.255.255</submask>
+    <vlan>2</vlan>
+    <gateway>131.255.0.0</gateway>
+  </device>
+  <device>
+    <pc_name>PC3</pc_name>
+    <ip_address>122.231.33.31</ip_address>
+    <submask>255.255.0.0</submask>
+    <vlan>3</vlan>
+    <gateway>131.255.0.0</gateway>
+  </device>
+  <device>
+    <pc_name>PC4</pc_name>
+    <ip_address>122.231.33.4</ip_address>
+    <submask>255.255.0.0</submask>
+    <vlan>1</vlan>
+    <gateway>131.255.0.0</gateway>
+  </device>
+</devices>

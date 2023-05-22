@@ -20,6 +20,18 @@ if(isset($_POST['sent']))
 	</script>'; 
 }
 
+if(isset($_POST['sent2']))
+{
+	$dbSession = new DBClass();
+	$dbSession->connect_db();
+	
+	$dbSession->exportXML();
+	
+	echo '<script type="text/javascript">
+       window.onload = function () { alert("XML erfolgreich exportiert"); } 
+	</script>'; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +43,6 @@ if(isset($_POST['sent']))
 	<body class="w3-light-grey">
 		<!-- Top container -->
 		<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-		  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i></button>
 		  <span class="w3-bar-item w3-right">Projekt</span>
 		</div>
 	
@@ -58,6 +69,7 @@ if(isset($_POST['sent']))
 			<div>
 				<form method="post" action="export.php">
 					<input class="w3-button w3-dark-grey" type="submit" name="sent" value="Export CSV">
+					<input class="w3-button w3-dark-grey" type="submit" name="sent2" value="Export XML">
 				</form>
 			</div>
 		</div>

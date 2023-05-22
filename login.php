@@ -10,7 +10,7 @@ session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$sID = $_POST['username'];
-	$sPW = $_POST['password'];
+	$sPW = hash('sha256',$_POST['password']);
 
 	$dbSession = new DBClass();
 	$dbSession->connect_db();

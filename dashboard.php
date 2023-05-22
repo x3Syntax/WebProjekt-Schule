@@ -27,8 +27,7 @@ $configs = $dbSession->getAllConfigs();
 	<body class="w3-light-grey">		
 		<!-- Top container -->
 		<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-		  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menussssssssssss</button>
-		  <span class="w3-bar-item w3-right">Logo</span>
+		  <span class="w3-bar-item w3-right">Projekt</span>
 		</div>
 		
 		<!-- Sidebar/menu -->
@@ -49,7 +48,7 @@ $configs = $dbSession->getAllConfigs();
 		  </div>
 		</nav>
 		
-		<div class="w3-main" style="margin-left:20%; margin-top: 3%;">
+		<div class="w3-main" style="margin-left:20%; margin-top: 0%;">
 			<div class="w3-main" style="margin-top: 0%;">
 			<table class="w3-table">
 				<tr>
